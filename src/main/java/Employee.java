@@ -1,3 +1,4 @@
+@SuppressWarnings("all")
 /**
  * Class implementing an employee.
  *

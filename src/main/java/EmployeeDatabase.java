@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+@SuppressWarnings("all")
 
 /**
  * A class that implements a database of employees.
@@ -53,9 +54,10 @@ public class EmployeeDatabase {
      * @return int
      */
     public int countManagersAbove(final Employee employee) {
-        /*
-         * Implement this function
-         */
+        if (findManager(employee) == null) {
+            return 0;
+        }
+        return 1 + countManagersAbove(findManager(employee));
     }
 
     /**
@@ -67,9 +69,16 @@ public class EmployeeDatabase {
      * @return int
      */
     public int countEmployeesUnder(final Employee employee) {
-        /*
-         * Implement this function
-         */
+        int result = 0;
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getManager() == employee.getName()) {
+                result += 1 + countEmployeesUnder(employees.get(i));
+            }
+        }
+        //if (result == 0) {
+          //  return 0;
+        //}
+        return result;
     }
 
     /**
